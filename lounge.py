@@ -64,7 +64,8 @@ async def handle_user(token, user, message, bot, chat_id, status_message):
     chatroom_id = await open_chatroom(token, user_id)
     if chatroom_id:
         await send_message(token, chatroom_id, message)
-        logging.info(f"Sent message to {user['user']['name']} in chatroom {chatroom_id}.")
+        user_name = user["user"].get("name", "Unknown User")
+        logging.info(f"Sent message to {user_name} in chatroom {chatroom_id}.")
         return True
     else:
         return False
